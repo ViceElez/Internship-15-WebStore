@@ -4,6 +4,9 @@
 :root{
     font-family: 'Times New Roman', Times, serif;
     background-image: url('../Assets/Images/background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
     background-size: cover;
     color: #333;
 }
