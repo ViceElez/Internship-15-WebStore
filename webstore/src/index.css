@@ -1,7 +1,9 @@
 @import url('../Pages/Welcome/Styles/welcomePage.css');
+@import url('../Pages/AddProduct/Styles/AddProduct.css');
 
 :root{
     font-family: 'Times New Roman', Times, serif;
     background-image: url('../Assets/Images/background.jpg');
     background-size: cover;
+    color: #333;
 }
