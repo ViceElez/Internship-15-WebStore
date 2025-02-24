@@ -1,0 +1,7 @@
+@import url('../Pages/Welcome/Styles/welcomePage.css');
+
+:root{
+    font-family: 'Times New Roman', Times, serif;
+    background-image: url('../Assets/Images/background.jpg');
+    background-size: cover;
+}

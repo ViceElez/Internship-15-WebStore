@@ -1,0 +1,31 @@
+
+.title-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+}
+.title-div h1{
+    font-size: 3rem;
+    font-weight: 700;
+    color: #333;
+}
+.title-div h2{
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #333;
+    margin-top: 20px;
+}
+
+.button-stack {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  align-items: center;
+  gap: 20px;
+}
+.contained-button{
+    width: 20%;
+    transform: translateY(100px);
+}
