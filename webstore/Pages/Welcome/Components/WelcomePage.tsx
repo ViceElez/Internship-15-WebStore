@@ -1,14 +1,36 @@
 import '../Styles/welcomePage.css';
 import {ContainedButton} from '../Components/ContainedButton.tsx';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+
 
 export const WelcomePage=()=>{  
 
-    const fetchProducts =  () => { 
-        fetch('https://fakestoreapi.com/products').
-        then(response => response.json()).
-        then(data=>localStorage.setItem('products',JSON.stringify(data)));
-    }
+    const fetchProducts = () => {
+        const dataFetched = localStorage.getItem('dataFetched');
+        const existingProducts = JSON.parse(localStorage.getItem('products') || '[]');
+         if (dataFetched === 'true' && existingProducts.length > 0) 
+            return;
+        
+        
+        fetch('https://fakestoreapi.com/products')
+            .then((response) => response.json())
+            .then((apiData) => {
+                const existingProducts = JSON.parse(localStorage.getItem('products') || '[]');
+                const mergedProducts = [...existingProducts, ...apiData];
+    
+                const uniqueProducts = mergedProducts.filter(
+                    (product, index, self) =>
+                        self.findIndex((p) => p.id === product.id) === index
+                );
+
+                localStorage.setItem('products', JSON.stringify(uniqueProducts));
+
+                localStorage.setItem('dataFetched', 'true');
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+            });
+    };
 
     useEffect(() => {
         fetchProducts();

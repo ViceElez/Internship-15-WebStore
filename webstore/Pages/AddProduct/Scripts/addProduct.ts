@@ -4,12 +4,14 @@ export function addProduct(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const products = JSON.parse(localStorage.getItem('products') || '[]');
+    console.log(products);
 
     const titleInput = document.getElementById('title') as HTMLInputElement;
     const priceInput = document.getElementById('price') as HTMLInputElement;
     const categoryInput = document.getElementById('category') as HTMLInputElement;
     const descriptionInput = document.getElementById('description') as HTMLInputElement;
     const imageInput = document.getElementById('image') as HTMLInputElement;
+
 
     const title = titleInput.value.trim();
     if (title === "") {
