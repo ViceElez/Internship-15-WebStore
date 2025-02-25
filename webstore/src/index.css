@@ -10,3 +10,6 @@
     background-size: cover;
     color: #333;
 }
+.hidden{
+    display: none;
+}

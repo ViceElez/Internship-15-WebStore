@@ -5,7 +5,7 @@ import '../Styles/ProductList.css';
 interface ProductType {
     id: number;
     title: string;
-    price: string;
+    price: number;
     description: string;
     category: string;
     image: string;
@@ -38,15 +38,28 @@ export const ProductList = () => {
     return(
         <div className='product-list-container'>
             <h1>Available Products</h1>
+            <div className="landing-page-filter">
+                <span>Sort</span>
+                <select
+                    id="select-filter"
+                >
+                    <option value="Default">Default</option>
+                    <option value="Category">Category</option>
+                </select>
+                <input
+                    type="text"
+                    id="category-input"
+                    placeholder="Enter Product Category"
+                    className="hidden"
+                />
+            </div>
             <div className="product-list">
                 {products.map((product: ProductType) => (
                     <Product 
                     key={product.id} 
+                    id={product.id}
                     title={product.title}
                     price={product.price}
-                    description={product.description}
-                    category={product.category}
-                    image={product.image}
                     />
                 ))}
             </div>

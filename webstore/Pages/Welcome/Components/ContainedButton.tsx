@@ -2,6 +2,7 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/ShoppingCart';
 import Stack from '@mui/material/Stack';
 import '../Styles/welcomePage.css';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 export function ContainedButton() {
