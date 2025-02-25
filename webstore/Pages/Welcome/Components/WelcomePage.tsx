@@ -1,7 +1,19 @@
 import '../Styles/welcomePage.css';
 import {ContainedButton} from '../Components/ContainedButton.tsx';
+import React, { useEffect } from 'react';
 
-export const WelcomePage=()=>{
+export const WelcomePage=()=>{  
+
+    const fetchProducts =  () => { 
+        fetch('https://fakestoreapi.com/products').
+        then(response => response.json()).
+        then(data=>localStorage.setItem('products',JSON.stringify(data)));
+    }
+
+    useEffect(() => {
+        fetchProducts();
+    },[]);
+
     return(
         <div className='welcome-page'>
             <div className="title-div">

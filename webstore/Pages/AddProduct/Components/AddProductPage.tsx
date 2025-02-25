@@ -1,6 +1,7 @@
 import {addProduct} from '../Scripts/addProduct';
 import { FormEvent, useState, useEffect } from 'react'
 import toast, { Toaster } from 'react-hot-toast';
+import React from 'react';
 
 export const AddProductPage=()=>{
     const [alert, setAlert] = useState<{ message: string; success: boolean } | null>(null); ;
