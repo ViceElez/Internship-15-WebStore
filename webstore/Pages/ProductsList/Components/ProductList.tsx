@@ -18,6 +18,7 @@ interface ProductType {
 
 export const ProductList = () => {
     const[search, setSearch] = useState<string>('');
+    const[categorySearch, setCategorySearch] = useState<string>('');
     const [products, setProducts] = useState<ProductType[]>([]);
 
     const loadProducts = () => {
@@ -40,15 +41,43 @@ export const ProductList = () => {
     }, []);
 
     const sortedProducts=products.slice().sort((a: ProductType, b: ProductType) =>b.rating.rate-(a.rating.rate));
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
+        setCategorySearch(''); 
     };
 
+    const handleCategorySearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setCategorySearch(e.target.value);
+        setSearch(''); 
+    };
+
+    const selectFilter = document.getElementById('select-filter') as HTMLSelectElement;
+    const categoryInput = document.getElementById('category-input') as HTMLInputElement;
+
+    const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        if (selectFilter.value === 'Category') {
+            categoryInput.classList.remove('hidden');
+            categoryInput.focus();
+        } else {
+            categoryInput.classList.add('hidden');
+            categoryInput.value = '';
+            setCategorySearch('');
+        }
+        setSearch('');
+    }
+
     let filteredProducts: ProductType[] = [];
-    if(search!==''){
+
+    if(search!=='' && search!==null){
         filteredProducts=products.filter((product: ProductType) => {
             return product.title.toLowerCase().trim().includes(search.toLowerCase().trim());
+        });
+        
+    }
+    else if(categorySearch!=='' && categorySearch!==null){
+        filteredProducts=products.filter((product: ProductType) => {
+            return product.category.toLowerCase().trim().includes(categorySearch.toLowerCase().trim());
         });
     }
     else{
@@ -62,12 +91,16 @@ export const ProductList = () => {
                     <input 
                     type="text" 
                     placeholder='Search...' 
-                    onChange={handleChange}
+                    value={search}
+                    onChange={handleSearchChange}
                     />
             </div>
             <div className="landing-page-filter">
                 <span>Sort</span>
-                <select id="select-filter">
+                <select
+                    id="select-filter"
+                    onChange={handleFilterChange}
+                    >
                     <option value="Default">Default</option>
                     <option value="Category">Category</option>
                 </select>
@@ -76,8 +109,11 @@ export const ProductList = () => {
                     id="category-input"
                     placeholder="Enter Product Category"
                     className="hidden"
+                    value={categorySearch}
+                    onChange={handleCategorySearchChange}
                 />
             </div>
+            {filteredProducts.length === 0 && <h3>No products found</h3>}
             <div className="product-list">
             {[...filteredProducts].sort((a, b) => b.rating.rate-(a.rating.rate)) 
                 .map((product: ProductType) => (
