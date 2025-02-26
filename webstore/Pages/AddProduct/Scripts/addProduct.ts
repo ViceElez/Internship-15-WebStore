@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
 
-export function addProduct(e: FormEvent<HTMLFormElement>) {
+export function addProduct(e: FormEvent<HTMLFormElement>,rating:number) {
     e.preventDefault();
 
     const products = JSON.parse(localStorage.getItem('products') || '[]');
@@ -11,6 +11,7 @@ export function addProduct(e: FormEvent<HTMLFormElement>) {
     const categoryInput = document.getElementById('category') as HTMLInputElement;
     const descriptionInput = document.getElementById('description') as HTMLInputElement;
     const imageInput = document.getElementById('image') as HTMLInputElement;
+    const quantityInput = document.getElementById('quantity') as HTMLInputElement;
 
 
     const title = titleInput.value.trim();
@@ -50,11 +51,17 @@ export function addProduct(e: FormEvent<HTMLFormElement>) {
         return {success: false,message: "Image can't be all numbers!" };
     }
 
+    const quantity = quantityInput?.value;
+    if(parseFloat(quantity) < 0){
+        return {success: false,message: "Quantity can't be negative!" };
+    }
+
     const productExists = products.some((product: any) =>
         product.title === title && product.price === price &&
         product.category === category && product.description === description &&
         product.image === image
     );
+    
     if (productExists) {
         return {success: false,message: "Product already exists!" };
     }
@@ -65,7 +72,9 @@ export function addProduct(e: FormEvent<HTMLFormElement>) {
         price,
         category,
         description,
-        image
+        image,
+        rating,
+        quantity
     };
 
     products.push(newProduct);

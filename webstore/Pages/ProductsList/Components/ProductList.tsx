@@ -9,6 +9,8 @@ interface ProductType {
     description: string;
     category: string;
     image: string;
+    rating: number;
+    quantity: number;
 }
 
 
@@ -38,6 +40,9 @@ export const ProductList = () => {
     return(
         <div className='product-list-container'>
             <h1>Available Products</h1>
+            <div className='search-bar'>
+                    <input type="text" />
+                </div>
             <div className="landing-page-filter">
                 <span>Sort</span>
                 <select

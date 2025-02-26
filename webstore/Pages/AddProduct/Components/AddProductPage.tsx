@@ -2,9 +2,11 @@ import {addProduct} from '../Scripts/addProduct';
 import { FormEvent, useState, useEffect } from 'react'
 import toast, { Toaster } from 'react-hot-toast';
 import React from 'react';
+import BasicRating from './Rating';
 
 export const AddProductPage=()=>{
-    const [alert, setAlert] = useState<{ message: string; success: boolean } | null>(null); ;
+    const [alert, setAlert] = useState<{ message: string; success: boolean } | null>(null);
+    const [rating, setRating] = useState<number | null>(0);
 
     const notify = (message:string,success:boolean) =>{
         if(success)
@@ -20,10 +22,11 @@ export const AddProductPage=()=>{
     }, [alert]);
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        const result = addProduct(e); 
+        const result = addProduct(e, rating ?? 0); 
         setAlert({ message: result.message, success: result.success });
         if (result.success) {
             (e.target as HTMLFormElement).reset();
+            setRating(0);
         }
     };
 
@@ -47,6 +50,8 @@ export const AddProductPage=()=>{
             <input type="text" id="category" name="category" placeholder="Category" required />
             <input type="description" id="description" name="description" placeholder="Description" required />
             <input type="text" id='image' name='image'  placeholder='Image'  required/>
+            <input type="number" id='quantity' name='quantity' placeholder='Quantity' required />
+            <BasicRating rating={rating} setRating={setRating} />
             
             <button type="submit">Add Car</button>
             </form>

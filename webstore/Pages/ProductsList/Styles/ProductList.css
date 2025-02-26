@@ -1,3 +1,8 @@
+.product-list-container{
+  display: flex;
+  flex-direction: column;
+}
+
 .product-list-container h1{
     text-align: center;
     margin-top: 20px;
@@ -10,7 +15,7 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 40px;
-    gap: 10px;
+    gap: 20px;
 }
 .product-card{
     width: 25%;
@@ -46,7 +51,7 @@
     color: inherit;
 }
 .landing-page-filter {  
-    float: right;
+    align-self: flex-end;
     padding: 15px 15px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -84,4 +89,8 @@
     background-position: right 10px center;
     background-size: 18px;
     padding-right: 30px;
+  }
+  .search-bar {
+    align-self: center;
+    transform: translateY(50px);
   }
