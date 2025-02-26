@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-export const Product=({id, title, price}: {id:number, title: string, price: number }) => {
+export const Product=({id, title, price,image}: {id:number, title: string, price: number,image:string }) => {
     return(
         <div className="product-card">
             <Link to={`/product/${id}`} className="product-link">
@@ -11,9 +11,11 @@ export const Product=({id, title, price}: {id:number, title: string, price: numb
                     <p>Product Price: {price}$</p>
                 </div>
                 <div className="product-image">
-                    <img src="../../../Assets/Images/temporaryImage.jpeg" alt="Product"/>
+                    <img src={image} alt={title}/>
                 </div>
             </Link>
         </div>
     )
 }
+
+//sredi izgled slike

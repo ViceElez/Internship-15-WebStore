@@ -23,12 +23,12 @@
     padding: 15px;
     border: 1px solid #ccc;   
     border-radius: 5px;
-    background: rgba(255, 38, 0, 0.6);   /* Change this line for design*/
+    background:rgba(147, 197, 114, 0.6);  /* Change this line for design*/
     box-shadow: 0 0 5px 0 rgba(0,0,0,0.1);   
-    color: aquamarine;
+    color:  darkmagenta;
 }
 .product-card:hover{
-    background: rgba(255, 38, 0, 0.8);  /* Change this line for design*/
+    background: rgba(99, 133, 77, 0.8);   /* Change this line for design*/
     color: white;
     cursor: pointer;
 }
@@ -42,7 +42,7 @@
     margin-top: 30px;
 }
 .product-card img{
-    width: 60%;
+    max-width:50%;
     object-fit: cover;
     border-radius: 5px;
 }
@@ -93,4 +93,11 @@
   .search-bar {
     align-self: center;
     transform: translateY(50px);
+    width: 30%;
+    max-width: 20%;
+  }
+  .search-bar input{
+    border-radius: 10px;
+    padding: 10px 15px;
+    width: 80%;
   }

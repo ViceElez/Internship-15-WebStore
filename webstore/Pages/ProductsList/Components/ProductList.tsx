@@ -9,13 +9,15 @@ interface ProductType {
     description: string;
     category: string;
     image: string;
-    rating: number;
-    quantity: number;
+    rating: {
+        rate: number;
+        count: number;
+    }
 }
 
 
 export const ProductList = () => {
-
+    const[search, setSearch] = useState<string>('');
     const [products, setProducts] = useState<ProductType[]>([]);
 
     const loadProducts = () => {
@@ -37,17 +39,35 @@ export const ProductList = () => {
         };
     }, []);
 
+    const sortedProducts=products.slice().sort((a: ProductType, b: ProductType) =>b.rating.rate-(a.rating.rate));
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearch(e.target.value);
+    };
+
+    let filteredProducts: ProductType[] = [];
+    if(search!==''){
+        filteredProducts=products.filter((product: ProductType) => {
+            return product.title.toLowerCase().trim().includes(search.toLowerCase().trim());
+        });
+    }
+    else{
+        filteredProducts=sortedProducts.slice(0, 20);
+    }
+
     return(
         <div className='product-list-container'>
             <h1>Available Products</h1>
             <div className='search-bar'>
-                    <input type="text" />
-                </div>
+                    <input 
+                    type="text" 
+                    placeholder='Search...' 
+                    onChange={handleChange}
+                    />
+            </div>
             <div className="landing-page-filter">
                 <span>Sort</span>
-                <select
-                    id="select-filter"
-                >
+                <select id="select-filter">
                     <option value="Default">Default</option>
                     <option value="Category">Category</option>
                 </select>
@@ -59,12 +79,14 @@ export const ProductList = () => {
                 />
             </div>
             <div className="product-list">
-                {products.map((product: ProductType) => (
+            {[...filteredProducts].sort((a, b) => b.rating.rate-(a.rating.rate)) 
+                .map((product: ProductType) => (
                     <Product 
                     key={product.id} 
                     id={product.id}
                     title={product.title}
                     price={product.price}
+                    image={product.image}
                     />
                 ))}
             </div>

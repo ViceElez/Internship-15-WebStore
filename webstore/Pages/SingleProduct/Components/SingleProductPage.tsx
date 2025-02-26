@@ -5,9 +5,11 @@ import '../Styles/SingleProduct.css';
 export const SingleProductPage=() =>{
     const {id}= useParams();
 
-    const exisitingProducts=JSON.parse(localStorage.getItem('products')||'[]');
-    const product = exisitingProducts.find((p: { id: { toString: () => string | undefined; }; }) => p.id.toString() === id);
-    console.log(product);
+    const existingProducts=JSON.parse(localStorage.getItem('products')||'[]');
+    const product = existingProducts.find((p: { id: { toString: () => string | undefined; }; }) => p.id.toString() === id);
+
+    const productsWithSameCategory = existingProducts.filter((p: { category: string; id: { toString: () => string | undefined; }; }) => p.category === product.category && p.id !== product.id);
+    console.log(productsWithSameCategory);
     return(
         <>
             <h1>{product.title}</h1>
@@ -33,7 +35,6 @@ export const SingleProductPage=() =>{
                     </p>
                 </div>
             </div>
-
         </>
     );
 }
