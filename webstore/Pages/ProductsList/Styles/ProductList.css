@@ -23,12 +23,12 @@
     padding: 15px;
     border: 1px solid #ccc;   
     border-radius: 5px;
-    background: rgba(255, 38, 0, 0.6);
-    box-shadow: 0 0 5px 0 rgba(0,0,0,0.1);
+    background: rgba(255, 38, 0, 0.6);   /* Change this line for design*/
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.1);   
     color: aquamarine;
 }
 .product-card:hover{
-    background: rgba(255, 38, 0, 0.8);
+    background: rgba(255, 38, 0, 0.8);  /* Change this line for design*/
     color: white;
     cursor: pointer;
 }

@@ -50,7 +50,6 @@ export const AddProductPage=()=>{
             <input type="text" id="category" name="category" placeholder="Category" required />
             <input type="description" id="description" name="description" placeholder="Description" required />
             <input type="text" id='image' name='image'  placeholder='Image'  required/>
-            <input type="number" id='quantity' name='quantity' placeholder='Quantity' required />
             <BasicRating rating={rating} setRating={setRating} />
             
             <button type="submit">Add Car</button>
