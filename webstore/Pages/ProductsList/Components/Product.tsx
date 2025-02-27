@@ -18,4 +18,4 @@ export const Product=({id, title, price,image}: {id:number, title: string, price
     )
 }
 
-//sredi izgled slike
+//sredi izgled slike da sve budu verticalno u sredini

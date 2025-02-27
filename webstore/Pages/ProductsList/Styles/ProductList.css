@@ -30,13 +30,13 @@
     padding: 15px;
     border: 1px solid #ccc;   
     border-radius: 5px;
-    background:rgba(147, 197, 114, 0.6);  /* Change this line for design*/
+    background:rgb(25, 118, 210,0.6);  /* Change this line for design*/
     box-shadow: 0 0 5px 0 rgba(0,0,0,0.1);   
-    color:  darkmagenta;
+    color: white;
 }
 .product-card:hover{
-    background: rgba(99, 133, 77, 0.8);   /* Change this line for design*/
-    color: white;
+    background: rgb(25, 118, 210,0.85);   /* Change this line for design*/
+    color: darkmagenta;
     cursor: pointer;
 }
 .product-info h2{
@@ -50,6 +50,7 @@
 }
 .product-card img{
     max-width:50%;
+    max-height: 250px;
     object-fit: cover;
     border-radius: 5px;
 }
@@ -62,7 +63,7 @@
     padding: 15px 15px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: rgba(147, 197, 114, 0.6); /* Change this line for design*/
+    background-color: rgb(25, 118, 210,0.6); /* Change this line for design*/
     transform: translateX(-30px);
     margin-top: 10px;
   }
@@ -83,7 +84,7 @@
     outline: none;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: rgba(147, 197, 114, 0.6); /* Change this line for design*/;
+    background-color: rgb(25, 118, 210,0.6); /* Change this line for design*/;
   }
   
   #select-filter option {
@@ -115,5 +116,10 @@
     border-radius: 5px;
     transform: translateX(10px);
     padding: 10px;
-    background-color: rgba(147, 197, 114, 0.6); /* Change this line for design*/
+    background-color: rgb(25, 118, 210,0.6); /* Change this line for design*/
+    color: white;
+  } 
+
+  #category-input::placeholder{
+    color: white;
   }

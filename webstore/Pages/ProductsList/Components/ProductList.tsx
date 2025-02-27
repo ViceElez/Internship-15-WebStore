@@ -3,7 +3,7 @@ import { Product } from './Product.tsx';
 import '../Styles/ProductList.css';
 import VariantButtonGroup from '../../AddProduct/Components/GroupedButton.tsx';
 
-interface ProductType {
+export interface ProductType {
     id: number;
     title: string;
     price: number;
@@ -56,7 +56,7 @@ export const ProductList = () => {
     const selectFilter = document.getElementById('select-filter') as HTMLSelectElement;
     const categoryInput = document.getElementById('category-input') as HTMLInputElement;
 
-    const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleFilterChange = () => {
         if (selectFilter.value === 'Category') {
             categoryInput.classList.remove('hidden');
             categoryInput.focus();
