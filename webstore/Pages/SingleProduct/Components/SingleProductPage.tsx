@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import '../Styles/SingleProduct.css';
+import VariantButtonGroup from '../../AddProduct/Components/GroupedButton';
 
 export const SingleProductPage=() =>{
     const {id}= useParams();
@@ -12,6 +13,9 @@ export const SingleProductPage=() =>{
     console.log(productsWithSameCategory);
     return(
         <>
+            <nav>
+                <VariantButtonGroup path1='/add-product' buttonMessage1='Add Product' path2="/products" buttonMessage2='Back' />
+            </nav>
             <h1>{product.title}</h1>
 
             <div className='single-product-container'>

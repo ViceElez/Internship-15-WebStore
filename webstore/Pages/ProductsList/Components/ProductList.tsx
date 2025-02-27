@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Product } from './Product.tsx';
 import '../Styles/ProductList.css';
+import VariantButtonGroup from '../../AddProduct/Components/GroupedButton.tsx';
 
 interface ProductType {
     id: number;
@@ -86,6 +87,9 @@ export const ProductList = () => {
 
     return(
         <div className='product-list-container'>
+            <nav>
+                 <VariantButtonGroup path1='/' buttonMessage1='Home' path2="/add-product" buttonMessage2='Add Product' />
+            </nav>
             <h1>Available Products</h1>
             <div className='search-bar'>
                     <input 

@@ -1,6 +1,7 @@
 import '../Styles/welcomePage.css';
 import {ContainedButton} from '../Components/ContainedButton.tsx';
 import { useEffect } from 'react';
+import React from 'react';
 
 
 export const WelcomePage=()=>{  

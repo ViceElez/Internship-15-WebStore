@@ -3,6 +3,7 @@ import { FormEvent, useState, useEffect } from 'react'
 import toast, { Toaster } from 'react-hot-toast';
 import React from 'react';
 import BasicRating from './Rating';
+import VariantButtonGroup from './GroupedButton';
 
 export const AddProductPage=()=>{
     const [alert, setAlert] = useState<{ message: string; success: boolean } | null>(null);
@@ -32,11 +33,9 @@ export const AddProductPage=()=>{
 
     return(
        <div className='add-product-page'>
-        {}
             <nav>
+                <VariantButtonGroup path1='/' buttonMessage1='Home' path2="/products" buttonMessage2='List All Products' />
             </nav>
-
-
             <header>
                 <h1>Add Product</h1>
             </header>
@@ -52,7 +51,7 @@ export const AddProductPage=()=>{
             <input type="text" id='image' name='image'  placeholder='Image'  required/>
             <BasicRating rating={rating} setRating={setRating} />
             
-            <button type="submit">Add Car</button>
+            <button type="submit">Add Product</button>
             </form>
         </div>
         <Toaster/>
