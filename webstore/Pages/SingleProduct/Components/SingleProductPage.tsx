@@ -31,7 +31,7 @@ export const SingleProductPage=() =>{
                 </div>  
 
                 <div className='single-product-info'>
-                    <p>Price: {product.price}€</p>
+                    <p>Price: ${product.price}</p>
                     <p>Category: {product.category}</p>
                     <p>Description: {product.description}</p>
                 </div>

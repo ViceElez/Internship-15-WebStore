@@ -8,6 +8,7 @@ import VariantButtonGroup from './GroupedButton';
 export const AddProductPage=()=>{
     const [alert, setAlert] = useState<{ message: string; success: boolean } | null>(null);
     const [rating, setRating] = useState<number | null>(0);
+    const [imageFile, setImageFile] = useState<string | null>(null);
 
     const notify = (message:string,success:boolean) =>{
         if(success)
@@ -22,15 +23,31 @@ export const AddProductPage=()=>{
         }
     }, [alert]);
 
+    const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImageFile(reader.result as string); 
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        const result = addProduct(e, rating ?? 0); 
+        e.preventDefault();
+        if (!imageFile) {
+            setAlert({ message: "Please upload an image!", success: false });
+            return;
+        }
+        const result = addProduct(e, rating ?? 0, imageFile);
         setAlert({ message: result.message, success: result.success });
         if (result.success) {
             (e.target as HTMLFormElement).reset();
             setRating(0);
+            setImageFile(null); 
         }
     };
-
     return(
        <div className='add-product-page'>
             <nav>
@@ -48,7 +65,7 @@ export const AddProductPage=()=>{
             <input type="number" id="price" name="price" placeholder="Price" required />
             <input type="text" id="category" name="category" placeholder="Category" required />
             <input type="description" id="description" name="description" placeholder="Description" required />
-            <input type="text" id='image' name='image'  placeholder='Image'  required/>
+            <input type="file" id="image" name="image" accept="image/*" onChange={handleImageUpload} required />
             <BasicRating rating={rating} setRating={setRating} />
             
             <button type="submit">Add Product</button>
@@ -58,5 +75,3 @@ export const AddProductPage=()=>{
        </div>
     )
 }
-
-//u nav doalze ova dva botuna s povratkon

@@ -8,7 +8,7 @@ export const Product=({id, title, price,image}: {id:number, title: string, price
                 <div className="product-info">
                     <h2>Product Information</h2>
                     <p>Product Title: {title}</p>
-                    <p>Product Price: {price}$</p>
+                    <p>Product Price: ${price}</p>
                 </div>
                 <div className="product-image">
                     <img src={image} alt={title}/>
@@ -17,5 +17,3 @@ export const Product=({id, title, price,image}: {id:number, title: string, price
         </div>
     )
 }
-
-//sredi izgled slike da sve budu verticalno u sredini

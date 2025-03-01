@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
 
-export function addProduct(e: FormEvent<HTMLFormElement>,rating:number) {
+export function addProduct(e: FormEvent<HTMLFormElement>,rating:number,imageFile: string) {
     e.preventDefault();
 
     const products = JSON.parse(localStorage.getItem('products') || '[]');
@@ -10,7 +10,6 @@ export function addProduct(e: FormEvent<HTMLFormElement>,rating:number) {
     const priceInput = document.getElementById('price') as HTMLInputElement;
     const categoryInput = document.getElementById('category') as HTMLInputElement;
     const descriptionInput = document.getElementById('description') as HTMLInputElement;
-    const imageInput = document.getElementById('image') as HTMLInputElement;
 
 
     const title = titleInput.value.trim();
@@ -42,18 +41,9 @@ export function addProduct(e: FormEvent<HTMLFormElement>,rating:number) {
         return {success: false,message: "Description can't be all numbers!" };
     }
 
-    const image = imageInput?.value.trim();
-    if (image === "") {
-        return {success: false,message: "Image can't be empty!" };
-    }
-    if (!isNaN(Number(image))) {
-        return {success: false,message: "Image can't be all numbers!" };
-    }
-
     const productExists = products.some((product: any) =>
         product.title === title && product.price === price &&
-        product.category === category && product.description === description &&
-        product.image === image
+        product.category === category && product.description === description
     );
     
     if (productExists) {
@@ -66,7 +56,7 @@ export function addProduct(e: FormEvent<HTMLFormElement>,rating:number) {
         price,
         category,
         description,
-        image,
+        image:imageFile,
         rating:{
             rate: rating,
             count: 0
